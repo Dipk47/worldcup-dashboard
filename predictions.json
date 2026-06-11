@@ -1,0 +1,962 @@
+{
+  "tournament_info": {
+    "name": "FIFA World Cup 2026",
+    "dates": "June 11 – July 19, 2026",
+    "hosts": "United States, Mexico, Canada",
+    "status": "In Progress"
+  },
+  "champion_prediction": {
+    "team": "Argentina",
+    "flag": "🇦🇷",
+    "details": "Three consecutive major trophies (Copa 2021, WC 2022, Copa 2024). Standard-bearer of footballing cohesion.",
+    "status": "pending"
+  },
+  "group_predictions": [
+    {
+      "group": "A",
+      "teams": [
+        "Mexico",
+        "South Africa",
+        "South Korea",
+        "Czechia"
+      ],
+      "predicted_top_two": [
+        "South Korea",
+        "Mexico"
+      ],
+      "actual_top_two": [],
+      "status": "pending"
+    },
+    {
+      "group": "B",
+      "teams": [
+        "Canada",
+        "Switzerland",
+        "Qatar",
+        "Bosnia & Herzegovina"
+      ],
+      "predicted_top_two": [
+        "Switzerland",
+        "Canada"
+      ],
+      "actual_top_two": [],
+      "status": "pending"
+    },
+    {
+      "group": "C",
+      "teams": [
+        "Brazil",
+        "Morocco",
+        "Haiti",
+        "Scotland"
+      ],
+      "predicted_top_two": [
+        "Brazil",
+        "Morocco"
+      ],
+      "actual_top_two": [],
+      "status": "pending"
+    },
+    {
+      "group": "D",
+      "teams": [
+        "United States",
+        "Paraguay",
+        "Australia",
+        "Türkiye"
+      ],
+      "predicted_top_two": [
+        "United States",
+        "Türkiye"
+      ],
+      "actual_top_two": [],
+      "status": "pending"
+    },
+    {
+      "group": "E",
+      "teams": [
+        "Germany",
+        "Curaçao",
+        "Ivory Coast",
+        "Ecuador"
+      ],
+      "predicted_top_two": [
+        "Germany",
+        "Ecuador"
+      ],
+      "actual_top_two": [],
+      "status": "pending"
+    },
+    {
+      "group": "F",
+      "teams": [
+        "Netherlands",
+        "Japan",
+        "Tunisia",
+        "Sweden"
+      ],
+      "predicted_top_two": [
+        "Japan",
+        "Netherlands"
+      ],
+      "actual_top_two": [],
+      "status": "pending"
+    },
+    {
+      "group": "G",
+      "teams": [
+        "Belgium",
+        "Egypt",
+        "Iran",
+        "New Zealand"
+      ],
+      "predicted_top_two": [
+        "Egypt",
+        "Belgium"
+      ],
+      "actual_top_two": [],
+      "status": "pending"
+    },
+    {
+      "group": "H",
+      "teams": [
+        "Spain",
+        "Cape Verde",
+        "Saudi Arabia",
+        "Uruguay"
+      ],
+      "predicted_top_two": [
+        "Spain",
+        "Uruguay"
+      ],
+      "actual_top_two": [],
+      "status": "pending"
+    },
+    {
+      "group": "I",
+      "teams": [
+        "France",
+        "Senegal",
+        "Norway",
+        "Iraq"
+      ],
+      "predicted_top_two": [
+        "France",
+        "Norway"
+      ],
+      "actual_top_two": [],
+      "status": "pending"
+    },
+    {
+      "group": "J",
+      "teams": [
+        "Argentina",
+        "Algeria",
+        "Austria",
+        "Jordan"
+      ],
+      "predicted_top_two": [
+        "Argentina",
+        "Austria"
+      ],
+      "actual_top_two": [],
+      "status": "pending"
+    },
+    {
+      "group": "K",
+      "teams": [
+        "Portugal",
+        "Colombia",
+        "Uzbekistan",
+        "DR Congo"
+      ],
+      "predicted_top_two": [
+        "Portugal",
+        "Colombia"
+      ],
+      "actual_top_two": [],
+      "status": "pending"
+    },
+    {
+      "group": "L",
+      "teams": [
+        "England",
+        "Croatia",
+        "Ghana",
+        "Panama"
+      ],
+      "predicted_top_two": [
+        "England",
+        "Croatia"
+      ],
+      "actual_top_two": [],
+      "status": "pending"
+    }
+  ],
+  "dark_horses": [
+    {
+      "team": "Norway",
+      "flag": "🇳🇴",
+      "rating": "9/10",
+      "predicted_run": "Quarter-finals or beyond",
+      "key_players": "Erling Haaland, Martin Ødegaard",
+      "status": "pending"
+    },
+    {
+      "team": "Japan",
+      "flag": "🇯🇵",
+      "rating": "8.5/10",
+      "predicted_run": "Break Round of 16 curse",
+      "key_players": "Takefusa Kubo, Wataru Endo",
+      "status": "pending"
+    },
+    {
+      "team": "Morocco",
+      "flag": "🇲🇦",
+      "rating": "8/10",
+      "predicted_run": "Knockouts deep run",
+      "key_players": "Achraf Hakimi, Brahim Díaz",
+      "status": "pending"
+    },
+    {
+      "team": "Egypt",
+      "flag": "🇪🇬",
+      "rating": "7.5/10",
+      "predicted_run": "Advance to knockouts",
+      "key_players": "Mohamed Salah, Omar Marmoush",
+      "status": "pending"
+    },
+    {
+      "team": "USA",
+      "flag": "🇺🇸",
+      "rating": "8/10",
+      "predicted_run": "Quarter-finals with home support",
+      "key_players": "Christian Pulisic, Weston McKennie",
+      "status": "pending"
+    }
+  ],
+  "special_upsets": [
+    {
+      "description": "Japan to beat Netherlands in Group F",
+      "predicted_result": "Japan Win",
+      "actual_result": "",
+      "status": "pending"
+    },
+    {
+      "description": "Norway to beat France in Group I opener",
+      "predicted_result": "Norway Win/Draw",
+      "actual_result": "",
+      "status": "pending"
+    },
+    {
+      "description": "Egypt to top Group G over Belgium",
+      "predicted_result": "Egypt 1st in Group G",
+      "actual_result": "",
+      "status": "pending"
+    }
+  ],
+  "bracket_predictions": {
+    "quarter_finals": [
+      {
+        "id": "qf1",
+        "match": "Argentina vs Netherlands",
+        "predicted": "Argentina",
+        "actual": "",
+        "status": "pending"
+      },
+      {
+        "id": "qf2",
+        "match": "Spain vs Germany",
+        "predicted": "Spain",
+        "actual": "",
+        "status": "pending"
+      },
+      {
+        "id": "qf3",
+        "match": "France vs Portugal",
+        "predicted": "France",
+        "actual": "",
+        "status": "pending"
+      },
+      {
+        "id": "qf4",
+        "match": "England vs Japan",
+        "predicted": "England",
+        "actual": "",
+        "status": "pending"
+      }
+    ],
+    "semi_finals": [
+      {
+        "id": "sf1",
+        "match": "Argentina vs Spain",
+        "predicted": "Argentina",
+        "actual": "",
+        "status": "pending"
+      },
+      {
+        "id": "sf2",
+        "match": "France vs England",
+        "predicted": "France",
+        "actual": "",
+        "status": "pending"
+      }
+    ],
+    "final": {
+      "match": "Argentina vs France",
+      "predicted": "Argentina",
+      "actual": "",
+      "status": "pending"
+    }
+  },
+  "key_matches": [
+    {
+      "id": "m1",
+      "group": "A",
+      "match": "Mexico vs South Africa",
+      "date": "June 11, 2026",
+      "predicted_winner": "Mexico",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m2",
+      "group": "D",
+      "match": "United States vs Paraguay",
+      "date": "June 11, 2026",
+      "predicted_winner": "United States",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m3",
+      "group": "E",
+      "match": "Germany vs Curaçao",
+      "date": "June 11, 2026",
+      "predicted_winner": "Germany",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m4",
+      "group": "L",
+      "match": "England vs Croatia",
+      "date": "June 11, 2026",
+      "predicted_winner": "England",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m5",
+      "group": "A",
+      "match": "South Korea vs Czechia",
+      "date": "June 12, 2026",
+      "predicted_winner": "South Korea",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m6",
+      "group": "B",
+      "match": "Canada vs Switzerland",
+      "date": "June 12, 2026",
+      "predicted_winner": "Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m7",
+      "group": "D",
+      "match": "Australia vs Türkiye",
+      "date": "June 12, 2026",
+      "predicted_winner": "Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m8",
+      "group": "E",
+      "match": "Ivory Coast vs Ecuador",
+      "date": "June 12, 2026",
+      "predicted_winner": "Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m9",
+      "group": "F",
+      "match": "Netherlands vs Japan",
+      "date": "June 12, 2026",
+      "predicted_winner": "Japan",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m10",
+      "group": "G",
+      "match": "Belgium vs Egypt",
+      "date": "June 12, 2026",
+      "predicted_winner": "Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m11",
+      "group": "I",
+      "match": "France vs Senegal",
+      "date": "June 12, 2026",
+      "predicted_winner": "France",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m12",
+      "group": "L",
+      "match": "Ghana vs Panama",
+      "date": "June 12, 2026",
+      "predicted_winner": "Ghana",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m13",
+      "group": "B",
+      "match": "Qatar vs Bosnia",
+      "date": "June 13, 2026",
+      "predicted_winner": "Bosnia",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m14",
+      "group": "C",
+      "match": "Brazil vs Morocco",
+      "date": "June 13, 2026",
+      "predicted_winner": "Morocco or Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m15",
+      "group": "F",
+      "match": "Tunisia vs Sweden",
+      "date": "June 13, 2026",
+      "predicted_winner": "Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m16",
+      "group": "G",
+      "match": "Iran vs New Zealand",
+      "date": "June 13, 2026",
+      "predicted_winner": "Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m17",
+      "group": "H",
+      "match": "Spain vs Cabo Verde",
+      "date": "June 13, 2026",
+      "predicted_winner": "Spain",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m18",
+      "group": "I",
+      "match": "Norway vs Iraq",
+      "date": "June 13, 2026",
+      "predicted_winner": "Norway",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m19",
+      "group": "J",
+      "match": "Argentina vs Algeria",
+      "date": "June 13, 2026",
+      "predicted_winner": "Argentina",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m20",
+      "group": "K",
+      "match": "Portugal vs Colombia",
+      "date": "June 13, 2026",
+      "predicted_winner": "Portugal",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m21",
+      "group": "C",
+      "match": "Haiti vs Scotland",
+      "date": "June 14, 2026",
+      "predicted_winner": "Scotland",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m22",
+      "group": "H",
+      "match": "Saudi Arabia vs Uruguay",
+      "date": "June 14, 2026",
+      "predicted_winner": "Uruguay",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m23",
+      "group": "J",
+      "match": "Austria vs Jordan",
+      "date": "June 14, 2026",
+      "predicted_winner": "Austria",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m24",
+      "group": "K",
+      "match": "Uzbekistan vs DR Congo",
+      "date": "June 14, 2026",
+      "predicted_winner": "Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m25",
+      "group": "A",
+      "match": "Mexico vs South Korea",
+      "date": "June 15, 2026",
+      "predicted_winner": "Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m26",
+      "group": "D",
+      "match": "United States vs Australia",
+      "date": "June 15, 2026",
+      "predicted_winner": "United States",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m27",
+      "group": "E",
+      "match": "Germany vs Ivory Coast",
+      "date": "June 15, 2026",
+      "predicted_winner": "Germany",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m28",
+      "group": "L",
+      "match": "England vs Ghana",
+      "date": "June 15, 2026",
+      "predicted_winner": "England",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m29",
+      "group": "A",
+      "match": "South Africa vs Czechia",
+      "date": "June 16, 2026",
+      "predicted_winner": "Czechia",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m30",
+      "group": "B",
+      "match": "Canada vs Qatar",
+      "date": "June 16, 2026",
+      "predicted_winner": "Canada",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m31",
+      "group": "D",
+      "match": "Paraguay vs Türkiye",
+      "date": "June 16, 2026",
+      "predicted_winner": "Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m32",
+      "group": "E",
+      "match": "Curaçao vs Ecuador",
+      "date": "June 16, 2026",
+      "predicted_winner": "Ecuador",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m33",
+      "group": "F",
+      "match": "Netherlands vs Tunisia",
+      "date": "June 16, 2026",
+      "predicted_winner": "Netherlands",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m34",
+      "group": "G",
+      "match": "Belgium vs Iran",
+      "date": "June 16, 2026",
+      "predicted_winner": "Belgium",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m35",
+      "group": "I",
+      "match": "France vs Norway",
+      "date": "June 16, 2026",
+      "predicted_winner": "Norway or Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m36",
+      "group": "L",
+      "match": "Croatia vs Panama",
+      "date": "June 16, 2026",
+      "predicted_winner": "Croatia",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m37",
+      "group": "B",
+      "match": "Switzerland vs Bosnia",
+      "date": "June 17, 2026",
+      "predicted_winner": "Switzerland",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m38",
+      "group": "C",
+      "match": "Brazil vs Haiti",
+      "date": "June 17, 2026",
+      "predicted_winner": "Brazil",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m39",
+      "group": "F",
+      "match": "Japan vs Sweden",
+      "date": "June 17, 2026",
+      "predicted_winner": "Japan",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m40",
+      "group": "G",
+      "match": "Egypt vs New Zealand",
+      "date": "June 17, 2026",
+      "predicted_winner": "Egypt",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m41",
+      "group": "H",
+      "match": "Spain vs Saudi Arabia",
+      "date": "June 17, 2026",
+      "predicted_winner": "Spain",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m42",
+      "group": "I",
+      "match": "Senegal vs Iraq",
+      "date": "June 17, 2026",
+      "predicted_winner": "Senegal",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m43",
+      "group": "J",
+      "match": "Argentina vs Austria",
+      "date": "June 17, 2026",
+      "predicted_winner": "Argentina",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m44",
+      "group": "K",
+      "match": "Portugal vs Uzbekistan",
+      "date": "June 17, 2026",
+      "predicted_winner": "Portugal",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m45",
+      "group": "C",
+      "match": "Morocco vs Scotland",
+      "date": "June 18, 2026",
+      "predicted_winner": "Morocco",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m46",
+      "group": "H",
+      "match": "Cabo Verde vs Uruguay",
+      "date": "June 18, 2026",
+      "predicted_winner": "Uruguay",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m47",
+      "group": "J",
+      "match": "Algeria vs Jordan",
+      "date": "June 18, 2026",
+      "predicted_winner": "Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m48",
+      "group": "K",
+      "match": "Colombia vs DR Congo",
+      "date": "June 18, 2026",
+      "predicted_winner": "Colombia",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m49",
+      "group": "A",
+      "match": "Mexico vs Czechia",
+      "date": "June 23, 2026",
+      "predicted_winner": "Mexico",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m50",
+      "group": "D",
+      "match": "United States vs Türkiye",
+      "date": "June 23, 2026",
+      "predicted_winner": "United States",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m51",
+      "group": "E",
+      "match": "Germany vs Ecuador",
+      "date": "June 23, 2026",
+      "predicted_winner": "Germany",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m52",
+      "group": "L",
+      "match": "England vs Panama",
+      "date": "June 23, 2026",
+      "predicted_winner": "England",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m53",
+      "group": "A",
+      "match": "South Africa vs South Korea",
+      "date": "June 24, 2026",
+      "predicted_winner": "South Korea",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m54",
+      "group": "B",
+      "match": "Canada vs Bosnia",
+      "date": "June 24, 2026",
+      "predicted_winner": "Canada",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m55",
+      "group": "D",
+      "match": "Paraguay vs Australia",
+      "date": "June 24, 2026",
+      "predicted_winner": "Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m56",
+      "group": "E",
+      "match": "Curaçao vs Ivory Coast",
+      "date": "June 24, 2026",
+      "predicted_winner": "Ivory Coast",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m57",
+      "group": "F",
+      "match": "Netherlands vs Sweden",
+      "date": "June 24, 2026",
+      "predicted_winner": "Netherlands",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m58",
+      "group": "G",
+      "match": "Belgium vs New Zealand",
+      "date": "June 24, 2026",
+      "predicted_winner": "Belgium",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m59",
+      "group": "I",
+      "match": "France vs Iraq",
+      "date": "June 24, 2026",
+      "predicted_winner": "France",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m60",
+      "group": "L",
+      "match": "Croatia vs Ghana",
+      "date": "June 24, 2026",
+      "predicted_winner": "Croatia",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m61",
+      "group": "B",
+      "match": "Switzerland vs Qatar",
+      "date": "June 25, 2026",
+      "predicted_winner": "Switzerland",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m62",
+      "group": "C",
+      "match": "Brazil vs Scotland",
+      "date": "June 25, 2026",
+      "predicted_winner": "Brazil",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m63",
+      "group": "F",
+      "match": "Japan vs Tunisia",
+      "date": "June 25, 2026",
+      "predicted_winner": "Japan",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m64",
+      "group": "G",
+      "match": "Egypt vs Iran",
+      "date": "June 25, 2026",
+      "predicted_winner": "Egypt",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m65",
+      "group": "H",
+      "match": "Spain vs Uruguay",
+      "date": "June 25, 2026",
+      "predicted_winner": "Spain",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m66",
+      "group": "I",
+      "match": "Senegal vs Norway",
+      "date": "June 25, 2026",
+      "predicted_winner": "Norway",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m67",
+      "group": "J",
+      "match": "Argentina vs Jordan",
+      "date": "June 25, 2026",
+      "predicted_winner": "Argentina",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m68",
+      "group": "K",
+      "match": "Portugal vs DR Congo",
+      "date": "June 25, 2026",
+      "predicted_winner": "Portugal",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m69",
+      "group": "C",
+      "match": "Morocco vs Haiti",
+      "date": "June 26, 2026",
+      "predicted_winner": "Morocco",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m70",
+      "group": "H",
+      "match": "Cabo Verde vs Saudi Arabia",
+      "date": "June 26, 2026",
+      "predicted_winner": "Draw",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m71",
+      "group": "J",
+      "match": "Algeria vs Austria",
+      "date": "June 26, 2026",
+      "predicted_winner": "Austria",
+      "score": "",
+      "status": "pending"
+    },
+    {
+      "id": "m72",
+      "group": "K",
+      "match": "Colombia vs Uzbekistan",
+      "date": "June 26, 2026",
+      "predicted_winner": "Colombia",
+      "score": "",
+      "status": "pending"
+    }
+  ]
+}

@@ -1,0 +1,2071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIFA 2026 World Cup Predictions Tracker</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at 50% 50%, #0d111d 0%, #06080c 100%);
+      --glass-bg: rgba(20, 25, 40, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --primary: #3b82f6; /* Blue for pending */
+      --primary-glow: rgba(59, 130, 246, 0.4);
+      --success: #10b981; /* Green for pass */
+      --success-glow: rgba(16, 185, 129, 0.4);
+      --danger: #ef4444; /* Red for fail */
+      --danger-glow: rgba(239, 68, 68, 0.4);
+      --accent: #f59e0b; /* Amber */
+      
+      --font-outfit: 'Outfit', sans-serif;
+      --font-space: 'Space Grotesk', sans-serif;
+      
+      --pending-color: #3b82f6;
+      --pass-color: #10b981;
+      --fail-color: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      font-family: var(--font-outfit);
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Wrapper */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Glass Card Style */
+    .glass-panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-panel:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    /* Header styling */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .header-left h1 {
+      font-family: var(--font-space);
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-left p {
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      font-size: 1rem;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Toggle Switch */
+    .admin-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      border: 1px solid var(--glass-border);
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .admin-toggle:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .admin-toggle.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.2);
+      transition: .3s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--accent);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    /* Scoreboard Summary Widget */
+    .summary-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      border-radius: 4px 0 0 4px;
+    }
+
+    .stat-card.all::before { background-color: var(--text-main); }
+    .stat-card.pass::before { background-color: var(--success); }
+    .stat-card.fail::before { background-color: var(--danger); }
+    .stat-card.pending::before { background-color: var(--primary); }
+    .stat-card.accuracy::before { background-color: var(--accent); }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-val {
+      font-family: var(--font-space);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 0.5rem;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-space);
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .tab-btn.active {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -9px;
+      left: 10%;
+      width: 80%;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 3px;
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    /* Content Views */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Common Card Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .badge-pending {
+      background: rgba(59, 130, 246, 0.12);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .badge-pass {
+      background: rgba(16, 185, 129, 0.12);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .badge-fail {
+      background: rgba(239, 68, 68, 0.12);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    /* Edit Button icon */
+    .edit-btn {
+      display: none;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      width: 32px;
+      height: 32px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      padding: 0;
+    }
+
+    .edit-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      border-color: var(--accent);
+    }
+
+    .admin-mode .edit-btn {
+      display: inline-flex;
+    }
+
+    /* --- TAB 1: OVERVIEW --- */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .champion-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(13, 17, 30, 0.8) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .champion-card::after {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px; right: -1px; bottom: -1px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary) 0%, transparent 50%, var(--accent) 100%);
+      z-index: -1;
+      opacity: 0.15;
+    }
+
+    .trophy-glow {
+      font-size: 4.5rem;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.4));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .champion-title {
+      font-family: var(--font-space);
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .champion-name {
+      font-family: var(--font-space);
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .champion-desc {
+      color: var(--text-muted);
+      max-width: 450px;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .card-actions {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    /* Highlight Section */
+    .highlights-panel h3 {
+      font-family: var(--font-space);
+      font-size: 1.3rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .highlight-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .highlight-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      padding-top: 2px;
+    }
+
+    .highlight-text {
+      flex: 1;
+    }
+
+    .highlight-text h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .highlight-text p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* --- TAB 2: GROUPS --- */
+    .groups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .group-card {
+      position: relative;
+    }
+
+    .group-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+    }
+
+    .group-name {
+      font-family: var(--font-space);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .team-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .team-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.4rem 0.75rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .team-item.predicted-top {
+      border-left: 3px solid var(--primary);
+      background: rgba(59, 130, 246, 0.04);
+      font-weight: 500;
+    }
+
+    .team-item.actual-top {
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 3px solid var(--success);
+      font-weight: 600;
+    }
+
+    .pred-box {
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .pred-box-label {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .pred-teams {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* --- TAB 3: DARK HORSES --- */
+    .horses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .horse-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .horse-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .horse-team {
+      font-family: var(--font-space);
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .horse-rating {
+      font-size: 0.85rem;
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 600;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .horse-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .horse-item {
+      font-size: 0.9rem;
+    }
+
+    .horse-label {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      margin-bottom: 0.15rem;
+    }
+
+    .horse-val {
+      font-weight: 500;
+    }
+
+    .horse-players {
+      font-style: italic;
+      color: var(--text-main);
+    }
+
+    /* --- TAB 4: KNOCKOUTS --- */
+    .bracket-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      overflow-x: auto;
+      padding: 1rem 0;
+    }
+
+    @media (max-width: 800px) {
+      .bracket-container {
+        flex-direction: column;
+        gap: 3rem;
+      }
+    }
+
+    .bracket-round {
+      flex: 1;
+      min-width: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 1.5rem;
+    }
+
+    .round-title {
+      font-family: var(--font-space);
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .bracket-match {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .bracket-team-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0.75rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .bracket-team-row.predicted-win {
+      border-color: rgba(59, 130, 246, 0.3);
+      background: rgba(59, 130, 246, 0.03);
+    }
+
+    .bracket-team-row.actual-win {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.06);
+      font-weight: 600;
+    }
+
+    .bracket-match-header {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* --- TAB 5: MATCHES --- */
+    .matches-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .match-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      gap: 1rem;
+      position: relative;
+    }
+
+    @media (max-width: 600px) {
+      .match-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+      }
+    }
+
+    .match-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .match-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .match-vs {
+      font-family: var(--font-space);
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .match-pred {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .match-pred span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .match-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .match-right {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+      }
+    }
+
+    .match-score {
+      font-family: var(--font-space);
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      border: 1px solid var(--glass-border);
+      letter-spacing: 2px;
+    }
+
+    /* --- MODAL DRAWER --- */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 500px;
+      margin: 1.5rem;
+      animation: modalSlideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-space);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .close-modal-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: color 0.2s ease;
+    }
+
+    .close-modal-btn:hover {
+      color: var(--text-main);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      color: var(--text-main);
+      padding: 0.75rem 1rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.25);
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: var(--font-space);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      border: 1px solid transparent;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+      box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+    }
+
+    /* Toast Notifications */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .toast {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transform: translateY(100px);
+      opacity: 0;
+      animation: slideIn 0.3s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .toast.success {
+      border-left: 4px solid var(--success);
+    }
+
+    @keyframes slideIn {
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .polymarket-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      color: #93c5fd;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-family: var(--font-space);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .polymarket-link:hover {
+      background: rgba(59, 130, 246, 0.18);
+      border-color: rgba(59, 130, 246, 0.5);
+      color: white;
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.2);
+    }
+
+    /* Mobile Responsive Queries */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 0.75rem;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .header-left h1 {
+        font-size: 1.8rem;
+      }
+      .champion-name {
+        font-size: 2.2rem;
+      }
+      .glass-panel {
+        padding: 1.25rem 1rem;
+      }
+      .summary-bar {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+      .summary-bar .stat-card.accuracy {
+        grid-column: span 2;
+      }
+      .overview-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .bracket-container {
+        flex-direction: row !important;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+      }
+      .bracket-round {
+        min-width: 280px;
+      }
+      /* Stagger filter selectors on mobile */
+      #matches .glass-panel[style*="margin-bottom: 1.5rem"] {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.75rem !important;
+      }
+      #matches .glass-panel[style*="margin-bottom: 1.5rem"] > div:first-child {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem !important;
+      }
+      #matches .glass-panel[style*="margin-bottom: 1.5rem"] > div:first-child span {
+        display: none !important; /* hide label text to save space */
+      }
+      #matches .glass-panel[style*="margin-bottom: 1.5rem"] select,
+      #matches .glass-panel[style*="margin-bottom: 1.5rem"] input {
+        width: 100% !important;
+        margin-left: 0 !important;
+      }
+      #matches .glass-panel[style*="margin-bottom: 1.5rem"] > div:last-child {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin-top: 0.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-left h1 {
+        font-size: 1.5rem;
+      }
+      .champion-name {
+        font-size: 1.8rem;
+      }
+      .nav-tabs {
+        gap: 0.25rem;
+      }
+      .tab-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+      .team-item {
+        padding: 0.35rem 0.5rem;
+      }
+      .toast {
+        width: calc(100% - 2rem);
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <header>
+    <div class="header-left">
+      <h1>FIFA 2026 World Cup Predictions Tracker</h1>
+      <p>Tracking agentic analytical forecasts against live results</p>
+    </div>
+    <div class="header-right">
+      <div class="admin-toggle" id="adminToggleBtn">
+        <span>Admin Edit Mode</span>
+        <label class="switch">
+          <input type="checkbox" id="adminToggleCheckbox">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <!-- Scoreboard Bar -->
+  <div class="summary-bar">
+    <div class="glass-panel stat-card all">
+      <div class="stat-label">Total Forecasts</div>
+      <div class="stat-val" id="statTotal">0</div>
+    </div>
+    <div class="glass-panel stat-card pass">
+      <div class="stat-label">Passed</div>
+      <div class="stat-val" id="statPass">0</div>
+    </div>
+    <div class="glass-panel stat-card fail">
+      <div class="stat-label">Failed</div>
+      <div class="stat-val" id="statFail">0</div>
+    </div>
+    <div class="glass-panel stat-card pending">
+      <div class="stat-label">Pending</div>
+      <div class="stat-val" id="statPending">0</div>
+    </div>
+    <div class="glass-panel stat-card accuracy">
+      <div class="stat-label">Accuracy Rate</div>
+      <div class="stat-val" id="statAccuracy">0%</div>
+    </div>
+  </div>
+
+  <!-- Tabs Navigation -->
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+    <button class="tab-btn" onclick="switchTab('groups')">Groups Stage</button>
+    <button class="tab-btn" onclick="switchTab('horses')">Dark Horses</button>
+    <button class="tab-btn" onclick="switchTab('bracket')">Knockout Bracket</button>
+    <button class="tab-btn" onclick="switchTab('matches')">Match Day</button>
+  </div>
+
+  <!-- Tab Content: Overview -->
+  <div id="overview" class="tab-content active">
+    <div class="overview-grid">
+      <!-- Champion forecast card -->
+      <div class="glass-panel champion-card" id="championCard">
+        <div class="card-actions">
+          <button class="edit-btn" onclick="editChampion()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          </button>
+        </div>
+        <div class="trophy-glow">🏆</div>
+        <div class="champion-title">Forecasted Champion</div>
+        <div class="champion-name" id="championName">Argentina 🇦🇷</div>
+        <div class="champion-desc" id="championDesc">
+          Three consecutive major trophies (Copa 2021, WC 2022, Copa 2024). Standard-bearer of footballing cohesion.
+        </div>
+        <div style="margin-top: 1.5rem;" id="championBadgeContainer">
+          <span class="badge badge-pending">Pending</span>
+        </div>
+      </div>
+
+      <!-- Highlights/Upsets list -->
+      <div class="glass-panel highlights-panel">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Special Upset & Forecast Highlights
+        </h3>
+        <div class="highlight-list" id="upsetList">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Groups Stage -->
+  <div id="groups" class="tab-content">
+    <div class="groups-grid" id="groupsGrid">
+      <!-- Dynamically populated group cards -->
+    </div>
+  </div>
+
+  <!-- Tab Content: Dark Horses -->
+  <div id="horses" class="tab-content">
+    <div class="horses-grid" id="horsesGrid">
+      <!-- Dynamically populated dark horse cards -->
+    </div>
+  </div>
+
+  <!-- Tab Content: Knockout Bracket -->
+  <div id="bracket" class="tab-content">
+    <div class="glass-panel">
+      <div class="bracket-container">
+        <!-- Quarter Finals -->
+        <div class="bracket-round">
+          <div class="round-title">Quarter-Finals</div>
+          <div id="qfBracket"></div>
+        </div>
+
+        <!-- Semi Finals -->
+        <div class="bracket-round">
+          <div class="round-title">Semi-Finals</div>
+          <div id="sfBracket"></div>
+        </div>
+
+        <!-- Final -->
+        <div class="bracket-round">
+          <div class="round-title">Final</div>
+          <div id="finalBracket"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab Content: Match Day -->
+  <div id="matches" class="tab-content">
+    <div class="glass-panel" style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Group:</span>
+        <select id="matchGroupFilter" class="form-control" style="width: auto; padding: 0.4rem 1.5rem; font-size: 0.9rem;" onchange="filterMatches()">
+          <option value="all">All Groups</option>
+          <option value="A">Group A</option>
+          <option value="B">Group B</option>
+          <option value="C">Group C</option>
+          <option value="D">Group D</option>
+          <option value="E">Group E</option>
+          <option value="F">Group F</option>
+          <option value="G">Group G</option>
+          <option value="H">Group H</option>
+          <option value="I">Group I</option>
+          <option value="J">Group J</option>
+          <option value="K">Group K</option>
+          <option value="L">Group L</option>
+        </select>
+
+        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-left: 0.5rem;">Status:</span>
+        <select id="matchStatusFilter" class="form-control" style="width: auto; padding: 0.4rem 1.5rem; font-size: 0.9rem;" onchange="filterMatches()">
+          <option value="all">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="pass">Pass</option>
+          <option value="fail">Fail</option>
+        </select>
+
+        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-left: 0.5rem;">My Stake ($):</span>
+        <input type="number" id="matchBetInput" class="form-control" style="width: 80px; padding: 0.4rem 0.75rem; font-size: 0.9rem;" value="20" min="1" oninput="filterMatches()">
+      </div>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="https://polymarket.com/sports/world-cup/games" target="_blank" class="polymarket-link" style="background:rgba(245, 158, 11, 0.1); border-color:rgba(245, 158, 11, 0.3); color:var(--accent);" title="Browse all World Cup markets on Polymarket">
+          🌐 All Polymarket Markets
+        </a>
+        <div style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;" id="matchCountDisplay">Showing 72 matches</div>
+      </div>
+    </div>
+    
+    <div class="matches-list" id="matchesList" style="display: flex; flex-direction: column; gap: 1rem;">
+      <!-- Dynamically populated matches list -->
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal Dialog -->
+<div class="modal-overlay" id="editModalOverlay">
+  <div class="glass-panel modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Edit Prediction</div>
+      <button class="close-modal-btn" onclick="closeModal()">&times;</button>
+    </div>
+    <div id="modalFormContainer">
+      <!-- Forms dynamically generated based on target edit type -->
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+  let predictionsData = null;
+  let isAdminMode = false;
+  let activeTab = 'overview';
+
+  // Toggle Admin Mode
+  const adminToggleCheckbox = document.getElementById('adminToggleCheckbox');
+  const adminToggleBtn = document.getElementById('adminToggleBtn');
+  
+  adminToggleCheckbox.addEventListener('change', (e) => {
+    isAdminMode = e.target.checked;
+    if (isAdminMode) {
+      document.body.classList.add('admin-mode');
+      adminToggleBtn.classList.add('active');
+      showToast('Admin Mode unlocked. Click edit icons to update predictions!');
+    } else {
+      document.body.classList.remove('admin-mode');
+      adminToggleBtn.classList.remove('active');
+    }
+  });
+
+  // Switch Tab
+  function switchTab(tabId) {
+    activeTab = tabId;
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    
+    // Find matching button
+    const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.textContent.toLowerCase().includes(tabId.slice(0,4)));
+    if (targetBtn) targetBtn.classList.add('active');
+    
+    const targetContent = document.getElementById(tabId);
+    if (targetContent) targetContent.classList.add('active');
+  }
+
+  // Load Initial Data
+  async function loadData() {
+    try {
+      // First try to load from localStorage to preserve edits
+      const cached = localStorage.getItem('worldcup_predictions');
+      if (cached) {
+        predictionsData = JSON.parse(cached);
+        renderDashboard();
+        // Also fetch from backend in background to sync if possible
+        fetchDataFromBackend();
+      } else {
+        await fetchDataFromBackend();
+      }
+    } catch (e) {
+      console.error('Failed to load data', e);
+      showToast('Error loading prediction data.');
+    }
+  }
+
+  async function fetchDataFromBackend() {
+    try {
+      const res = await fetch('predictions.json');
+      if (res.ok) {
+        predictionsData = await res.json();
+        // Sync with localStorage
+        localStorage.setItem('worldcup_predictions', JSON.stringify(predictionsData));
+        renderDashboard();
+      }
+    } catch(e) {
+      console.warn('Backend fetch failed, using default fallback data model');
+    }
+  }
+
+  // Render Dashboard
+  function renderDashboard() {
+    if (!predictionsData) return;
+    
+    updateScoreboard();
+    renderOverview();
+    renderGroups();
+    renderDarkHorses();
+    renderBracket();
+    renderMatches();
+  }
+
+  // Calculate stats and update top bar
+  function updateScoreboard() {
+    let total = 0;
+    let pass = 0;
+    let fail = 0;
+    let pending = 0;
+
+    // 1. Champion
+    total++;
+    if (predictionsData.champion_prediction.status === 'pass') pass++;
+    else if (predictionsData.champion_prediction.status === 'fail') fail++;
+    else pending++;
+
+    // 2. Groups
+    predictionsData.group_predictions.forEach(gp => {
+      total++;
+      if (gp.status === 'pass') pass++;
+      else if (gp.status === 'fail') fail++;
+      else pending++;
+    });
+
+    // 3. Dark Horses
+    predictionsData.dark_horses.forEach(dh => {
+      total++;
+      if (dh.status === 'pass') pass++;
+      else if (dh.status === 'fail') fail++;
+      else pending++;
+    });
+
+    // 4. Special Upsets
+    predictionsData.special_upsets.forEach(su => {
+      total++;
+      if (su.status === 'pass') pass++;
+      else if (su.status === 'fail') fail++;
+      else pending++;
+    });
+
+    // 5. Bracket matches
+    const qfs = predictionsData.bracket_predictions.quarter_finals;
+    const sfs = predictionsData.bracket_predictions.semi_finals;
+    const final = predictionsData.bracket_predictions.final;
+
+    qfs.forEach(qf => {
+      total++;
+      if (qf.status === 'pass') pass++;
+      else if (qf.status === 'fail') fail++;
+      else pending++;
+    });
+
+    sfs.forEach(sf => {
+      total++;
+      if (sf.status === 'pass') pass++;
+      else if (sf.status === 'fail') fail++;
+      else pending++;
+    });
+
+    total++;
+    if (final.status === 'pass') pass++;
+    else if (final.status === 'fail') fail++;
+    else pending++;
+
+    // 6. Matchday specific (Count as part of predictions)
+    predictionsData.key_matches.forEach(m => {
+      total++;
+      if (m.status === 'pass') pass++;
+      else if (m.status === 'fail') fail++;
+      else pending++;
+    });
+
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statPass').textContent = pass;
+    document.getElementById('statFail').textContent = fail;
+    document.getElementById('statPending').textContent = pending;
+
+    const rate = total - pending > 0 ? Math.round((pass / (total - pending)) * 100) : 0;
+    document.getElementById('statAccuracy').textContent = rate + '%';
+  }
+
+  // Render Tab: Overview
+  function renderOverview() {
+    const champ = predictionsData.champion_prediction;
+    document.getElementById('championName').innerHTML = `${champ.team} ${champ.flag}`;
+    document.getElementById('championDesc').textContent = champ.details;
+    document.getElementById('championBadgeContainer').innerHTML = getStatusBadge(champ.status);
+
+    // Render Upsets
+    const list = document.getElementById('upsetList');
+    list.innerHTML = '';
+    predictionsData.special_upsets.forEach((u, idx) => {
+      const div = document.createElement('div');
+      div.className = 'highlight-item';
+      
+      let badgeColorClass = 'badge-pending';
+      if (u.status === 'pass') badgeColorClass = 'badge-pass';
+      if (u.status === 'fail') badgeColorClass = 'badge-fail';
+
+      div.innerHTML = `
+        <div class="highlight-icon">🥅</div>
+        <div class="highlight-text">
+          <h4>
+            ${u.description}
+            <span class="badge ${badgeColorClass}">${u.status}</span>
+          </h4>
+          <p><strong>Forecasted:</strong> ${u.predicted_result} ${u.actual_result ? `| <strong>Actual:</strong> ${u.actual_result}` : ''}</p>
+        </div>
+        <button class="edit-btn" onclick="editUpset(${idx})">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        </button>
+      `;
+      list.appendChild(div);
+    });
+  }
+
+  // Render Tab: Groups Stage
+  function renderGroups() {
+    const grid = document.getElementById('groupsGrid');
+    grid.innerHTML = '';
+
+    predictionsData.group_predictions.forEach((g, idx) => {
+      const panel = document.createElement('div');
+      panel.className = 'glass-panel group-card';
+      
+      let teamRows = '';
+      g.teams.forEach(team => {
+        let statusClass = '';
+        if (g.actual_top_two.includes(team)) {
+          statusClass = 'actual-top';
+        } else if (g.predicted_top_two.includes(team)) {
+          statusClass = 'predicted-top';
+        }
+        
+        teamRows += `<li class="team-item ${statusClass}"><span>${team}</span></li>`;
+      });
+
+      panel.innerHTML = `
+        <div class="group-header">
+          <div class="group-name">Group ${g.group}</div>
+          ${getStatusBadge(g.status)}
+        </div>
+        <ul class="team-list">
+          ${teamRows}
+        </ul>
+        <div class="pred-box">
+          <div class="pred-box-label">Predicted Top 2</div>
+          <div class="pred-teams">${g.predicted_top_two.join(', ')}</div>
+          ${g.actual_top_two.length > 0 ? `
+            <div class="pred-box-label" style="margin-top:0.5rem">Actual Top 2</div>
+            <div class="pred-teams" style="color:var(--success)">${g.actual_top_two.join(', ')}</div>
+          ` : ''}
+        </div>
+        <div class="card-actions" style="top: 1rem; right: 1rem;">
+          <button class="edit-btn" onclick="editGroup(${idx})">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          </button>
+        </div>
+      `;
+      grid.appendChild(panel);
+    });
+  }
+
+  // Render Tab: Dark Horses
+  function renderDarkHorses() {
+    const grid = document.getElementById('horsesGrid');
+    grid.innerHTML = '';
+
+    predictionsData.dark_horses.forEach((h, idx) => {
+      const panel = document.createElement('div');
+      panel.className = 'glass-panel horse-card';
+
+      panel.innerHTML = `
+        <div class="horse-header">
+          <div class="horse-team">${h.flag} ${h.team}</div>
+          <div class="horse-rating">Rating: ${h.rating}</div>
+        </div>
+        <div class="horse-body">
+          <div class="horse-item">
+            <div class="horse-label">Forecasted Run</div>
+            <div class="horse-val">${h.predicted_run}</div>
+          </div>
+          <div class="horse-item">
+            <div class="horse-label">Key Talismans</div>
+            <div class="horse-players">${h.key_players}</div>
+          </div>
+          <div style="margin-top:auto; padding-top:1rem; display:flex; justify-content:space-between; align-items:center;">
+            ${getStatusBadge(h.status)}
+            <button class="edit-btn" onclick="editDarkHorse(${idx})">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            </button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(panel);
+    });
+  }
+
+  // Render Tab: Bracket
+  function renderBracket() {
+    // 1. Quarter Finals
+    const qfDiv = document.getElementById('qfBracket');
+    qfDiv.innerHTML = '';
+    predictionsData.bracket_predictions.quarter_finals.forEach((qf, idx) => {
+      const matchPanel = document.createElement('div');
+      matchPanel.className = 'bracket-match';
+      
+      const teams = qf.match.split(' vs ');
+      const p1Class = (qf.predicted === teams[0]) ? 'predicted-win' : '';
+      const p2Class = (qf.predicted === teams[1]) ? 'predicted-win' : '';
+      
+      const a1Class = (qf.actual === teams[0]) ? 'actual-win' : '';
+      const a2Class = (qf.actual === teams[1]) ? 'actual-win' : '';
+
+      matchPanel.innerHTML = `
+        <div class="bracket-match-header">
+          <span>QF Match</span>
+          <div style="display:flex; gap:0.25rem; align-items:center;">
+            ${getStatusBadge(qf.status)}
+            <button class="edit-btn" onclick="editBracket('quarter_finals', ${idx})">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            </button>
+          </div>
+        </div>
+        <div class="bracket-team-row ${p1Class} ${a1Class}">
+          <span>${teams[0]}</span>
+          ${qf.predicted === teams[0] ? '<span style="font-size:0.7rem; color:var(--accent);">★</span>' : ''}
+        </div>
+        <div class="bracket-team-row ${p2Class} ${a2Class}">
+          <span>${teams[1]}</span>
+          ${qf.predicted === teams[1] ? '<span style="font-size:0.7rem; color:var(--accent);">★</span>' : ''}
+        </div>
+      `;
+      qfDiv.appendChild(matchPanel);
+    });
+
+    // 2. Semi Finals
+    const sfDiv = document.getElementById('sfBracket');
+    sfDiv.innerHTML = '';
+    predictionsData.bracket_predictions.semi_finals.forEach((sf, idx) => {
+      const matchPanel = document.createElement('div');
+      matchPanel.className = 'bracket-match';
+      
+      const teams = sf.match.split(' vs ');
+      const p1Class = (sf.predicted === teams[0]) ? 'predicted-win' : '';
+      const p2Class = (sf.predicted === teams[1]) ? 'predicted-win' : '';
+      
+      const a1Class = (sf.actual === teams[0]) ? 'actual-win' : '';
+      const a2Class = (sf.actual === teams[1]) ? 'actual-win' : '';
+
+      matchPanel.innerHTML = `
+        <div class="bracket-match-header">
+          <span>SF Match</span>
+          <div style="display:flex; gap:0.25rem; align-items:center;">
+            ${getStatusBadge(sf.status)}
+            <button class="edit-btn" onclick="editBracket('semi_finals', ${idx})">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            </button>
+          </div>
+        </div>
+        <div class="bracket-team-row ${p1Class} ${a1Class}">
+          <span>${teams[0]}</span>
+          ${sf.predicted === teams[0] ? '<span style="font-size:0.7rem; color:var(--accent);">★</span>' : ''}
+        </div>
+        <div class="bracket-team-row ${p2Class} ${a2Class}">
+          <span>${teams[1]}</span>
+          ${sf.predicted === teams[1] ? '<span style="font-size:0.7rem; color:var(--accent);">★</span>' : ''}
+        </div>
+      `;
+      sfDiv.appendChild(matchPanel);
+    });
+
+    // 3. Final
+    const finalDiv = document.getElementById('finalBracket');
+    finalDiv.innerHTML = '';
+    const final = predictionsData.bracket_predictions.final;
+    const teams = final.match.split(' vs ');
+    const p1Class = (final.predicted === teams[0]) ? 'predicted-win' : '';
+    const p2Class = (final.predicted === teams[1]) ? 'predicted-win' : '';
+    
+    const a1Class = (final.actual === teams[0]) ? 'actual-win' : '';
+    const a2Class = (final.actual === teams[1]) ? 'actual-win' : '';
+
+    const matchPanel = document.createElement('div');
+    matchPanel.className = 'bracket-match';
+    matchPanel.innerHTML = `
+      <div class="bracket-match-header">
+        <span>Grand Final</span>
+        <div style="display:flex; gap:0.25rem; align-items:center;">
+          ${getStatusBadge(final.status)}
+          <button class="edit-btn" onclick="editFinal()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          </button>
+        </div>
+      </div>
+      <div class="bracket-team-row ${p1Class} ${a1Class}">
+        <span>${teams[0]}</span>
+        ${final.predicted === teams[0] ? '<span style="font-size:0.7rem; color:var(--accent);">★</span>' : ''}
+      </div>
+      <div class="bracket-team-row ${p2Class} ${a2Class}">
+        <span>${teams[1]}</span>
+        ${final.predicted === teams[1] ? '<span style="font-size:0.7rem; color:var(--accent);">★</span>' : ''}
+      </div>
+    `;
+    finalDiv.appendChild(matchPanel);
+  }
+
+  // Render Tab: Matches
+  function renderMatches() {
+    const list = document.getElementById('matchesList');
+    list.innerHTML = '';
+
+    const groupFilter = document.getElementById('matchGroupFilter')?.value || 'all';
+    const statusFilter = document.getElementById('matchStatusFilter')?.value || 'all';
+    const betSize = parseFloat(document.getElementById('matchBetInput')?.value) || 20;
+
+    // Direct JS ratings lookup for scaling odds realistically
+    const teamRatings = {
+      "Argentina": 9.8, "Spain": 9.5, "France": 9.4, "England": 9.3, "Portugal": 8.8,
+      "Germany": 8.5, "Brazil": 8.3, "Japan": 8.2, "Norway": 8.1, "Morocco": 8.0,
+      "Uruguay": 7.8, "United States": 7.7, "Colombia": 7.6, "Egypt": 7.5,
+      "Ecuador": 7.4, "South Korea": 7.3, "Netherlands": 7.2, "Croatia": 7.1,
+      "Ivory Coast": 7.0, "Senegal": 6.9, "Switzerland": 6.8, "Canada": 7.2,
+      "Czechia": 6.5, "Türkiye": 6.4, "Austria": 6.3, "Paraguay": 6.2,
+      "Australia": 6.1, "Sweden": 6.0, "Bosnia": 5.8, "Bosnia & Herzegovina": 5.8,
+      "Ghana": 5.7, "Tunisia": 5.6, "Saudi Arabia": 5.5, "South Africa": 5.4,
+      "Uzbekistan": 5.2, "Cape Verde": 5.1, "Cabo Verde": 5.1, "DR Congo": 5.0,
+      "Iraq": 4.8, "Algeria": 4.7, "Jordan": 4.5, "Qatar": 4.3, "Panama": 4.2,
+      "Curaçao": 4.0, "Haiti": 3.8, "New Zealand": 3.6, "Iran": 3.5, "Mexico": 7.5
+    };
+
+    let count = 0;
+
+    predictionsData.key_matches.forEach((m, idx) => {
+      // Apply filters
+      if (groupFilter !== 'all' && m.group !== groupFilter) return;
+      if (statusFilter !== 'all' && m.status !== statusFilter) return;
+
+      count++;
+      const item = document.createElement('div');
+      item.className = 'glass-panel match-item';
+
+      // Create Polymarket Link
+      const polyQuery = encodeURIComponent(`${m.match} World Cup`);
+      const polymarketUrl = `https://polymarket.com/search?q=${polyQuery}`;
+
+      // Calculate simulated odds price
+      const teams = m.match.split(' vs ');
+      const tA = teams[0].trim();
+      const tB = teams[1].trim();
+      const pred = m.predicted_winner;
+
+      let odds = 0.60; 
+      if (pred === "Draw") {
+        odds = 0.30;
+      } else if (pred.includes("or Draw")) {
+        odds = 0.45;
+      } else {
+        const rPred = teamRatings[pred] || 6.0;
+        const rOpp = teamRatings[pred === tA ? tB : tA] || 6.0;
+        const diff = rPred - rOpp;
+        
+        if (diff > 3.0) odds = 0.85;
+        else if (diff > 1.8) odds = 0.78;
+        else if (diff > 0.8) odds = 0.70;
+        else if (diff > 0.3) odds = 0.62;
+        else if (diff > -0.3) odds = 0.55;
+        else odds = 0.45; 
+      }
+
+      const shares = betSize / odds;
+      const gain = (shares * 1.00) - betSize;
+
+      item.innerHTML = `
+        <div class="match-meta">
+          <div class="match-date">
+            ${m.date} 
+            ${m.group ? `<span style="background:rgba(245, 158, 11, 0.1); color:var(--accent); font-size:0.75rem; font-weight:600; padding:0.15rem 0.5rem; border-radius:4px; margin-left:0.5rem; border: 1px solid rgba(245, 158, 11, 0.15)">GROUP ${m.group}</span>` : ''}
+          </div>
+          <div class="match-vs">${m.match}</div>
+          <div class="match-pred">Forecast: <span>${m.predicted_winner}</span></div>
+          <div style="display: flex; gap: 0.35rem; margin-top: 0.4rem; font-size: 0.75rem; color: var(--text-muted); flex-wrap: wrap; align-items: center;">
+            <span style="background: rgba(255,255,255,0.03); padding: 0.15rem 0.45rem; border-radius: 6px; border: 1px solid var(--glass-border); font-family: var(--font-space); font-weight: 500; text-transform: uppercase;">
+              Odds: <strong style="color: var(--text-main);">${Math.round(odds * 100)}¢</strong>
+            </span>
+            <span style="background: rgba(16, 185, 129, 0.05); padding: 0.15rem 0.45rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.15); color: #a7f3d0; font-family: var(--font-space); font-weight: 500; text-transform: uppercase;">
+              Est. Profit: <strong style="color: var(--success);">+$${gain.toFixed(2)}</strong> on Win
+            </span>
+          </div>
+        </div>
+        <div class="match-right">
+          ${m.score ? `<div class="match-score">${m.score}</div>` : `<div class="match-score" style="color:var(--text-muted); font-size:0.9rem; letter-spacing:0; font-weight:500;">vs</div>`}
+          <a href="${polymarketUrl}" target="_blank" class="polymarket-link" title="Check Live Polymarket Odds">
+            📊 Odds
+          </a>
+          ${getStatusBadge(m.status)}
+          <button class="edit-btn" onclick="editMatch(${idx})">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+          </button>
+        </div>
+      `;
+      list.appendChild(item);
+    });
+
+    const countDisplay = document.getElementById('matchCountDisplay');
+    if (countDisplay) {
+      countDisplay.textContent = `Showing ${count} of ${predictionsData.key_matches.length} matches`;
+    }
+  }
+
+  // Filter Trigger
+  window.filterMatches = function() {
+    renderMatches();
+  }
+
+  // Helper: Status badge html
+  function getStatusBadge(status) {
+    if (status === 'pass') return `<span class="badge badge-pass">Pass</span>`;
+    if (status === 'fail') return `<span class="badge badge-fail">Fail</span>`;
+    return `<span class="badge badge-pending">Pending</span>`;
+  }
+
+  // --- EDIT MODAL FORMS & TRIGGER ACTIONS ---
+  const overlay = document.getElementById('editModalOverlay');
+  const modalTitle = document.getElementById('modalTitle');
+  const formContainer = document.getElementById('modalFormContainer');
+
+  function openModal(title, html) {
+    modalTitle.textContent = title;
+    formContainer.innerHTML = html;
+    overlay.classList.add('active');
+  }
+
+  function closeModal() {
+    overlay.classList.remove('active');
+  }
+
+  // Save State and Notify
+  async function saveData() {
+    // 1. Save locally
+    localStorage.setItem('worldcup_predictions', JSON.stringify(predictionsData));
+    
+    // 2. Try to sync to backend filesystem
+    try {
+      const response = await fetch('/update', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(predictionsData)
+      });
+      if (response.ok) {
+        showToast('Successfully saved predictions to predictions.json!');
+      } else {
+        showToast('Saved to browser localStorage. Run python server to update filesystem file.');
+      }
+    } catch (err) {
+      showToast('Saved to browser localStorage. (Python server offline)');
+    }
+    
+    // 3. Re-render UI
+    renderDashboard();
+    closeModal();
+  }
+
+  // Edit Champion
+  function editChampion() {
+    const champ = predictionsData.champion_prediction;
+    const html = `
+      <div class="form-group">
+        <label>Forecasted Champion Team</label>
+        <input type="text" class="form-control" id="editChampTeam" value="${champ.team}">
+      </div>
+      <div class="form-group">
+        <label>Flag Emoji</label>
+        <input type="text" class="form-control" id="editChampFlag" value="${champ.flag}">
+      </div>
+      <div class="form-group">
+        <label>Details / Analysis Context</label>
+        <textarea class="form-control" id="editChampDetails" rows="3">${champ.details}</textarea>
+      </div>
+      <div class="form-group">
+        <label>Prediction Status</label>
+        <select class="form-control" id="editChampStatus">
+          <option value="pending" ${champ.status === 'pending' ? 'selected' : ''}>Pending</option>
+          <option value="pass" ${champ.status === 'pass' ? 'selected' : ''}>Pass</option>
+          <option value="fail" ${champ.status === 'fail' ? 'selected' : ''}>Fail</option>
+        </select>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitChampion()">Save Changes</button>
+      </div>
+    `;
+    openModal('Edit Champion Forecast', html);
+  }
+
+  function submitChampion() {
+    predictionsData.champion_prediction.team = document.getElementById('editChampTeam').value;
+    predictionsData.champion_prediction.flag = document.getElementById('editChampFlag').value;
+    predictionsData.champion_prediction.details = document.getElementById('editChampDetails').value;
+    predictionsData.champion_prediction.status = document.getElementById('editChampStatus').value;
+    saveData();
+  }
+
+  // Edit Upset
+  window.editUpset = function(idx) {
+    const u = predictionsData.special_upsets[idx];
+    const html = `
+      <div class="form-group">
+        <label>Upset Description</label>
+        <input type="text" class="form-control" id="editUpsetDesc" value="${u.description}">
+      </div>
+      <div class="form-group">
+        <label>Predicted outcome</label>
+        <input type="text" class="form-control" id="editUpsetPred" value="${u.predicted_result}">
+      </div>
+      <div class="form-group">
+        <label>Actual outcome</label>
+        <input type="text" class="form-control" id="editUpsetActual" value="${u.actual_result}">
+      </div>
+      <div class="form-group">
+        <label>Prediction Status</label>
+        <select class="form-control" id="editUpsetStatus">
+          <option value="pending" ${u.status === 'pending' ? 'selected' : ''}>Pending</option>
+          <option value="pass" ${u.status === 'pass' ? 'selected' : ''}>Pass</option>
+          <option value="fail" ${u.status === 'fail' ? 'selected' : ''}>Fail</option>
+        </select>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitUpset(${idx})">Save Changes</button>
+      </div>
+    `;
+    openModal('Edit Upset Forecast', html);
+  }
+
+  window.submitUpset = function(idx) {
+    predictionsData.special_upsets[idx].description = document.getElementById('editUpsetDesc').value;
+    predictionsData.special_upsets[idx].predicted_result = document.getElementById('editUpsetPred').value;
+    predictionsData.special_upsets[idx].actual_result = document.getElementById('editUpsetActual').value;
+    predictionsData.special_upsets[idx].status = document.getElementById('editUpsetStatus').value;
+    saveData();
+  }
+
+  // Edit Group
+  window.editGroup = function(idx) {
+    const g = predictionsData.group_predictions[idx];
+    const html = `
+      <div class="form-group">
+        <label>Group Name</label>
+        <input type="text" class="form-control" value="Group ${g.group}" disabled>
+      </div>
+      <div class="form-group">
+        <label>Actual Top 2 (comma separated)</label>
+        <input type="text" class="form-control" id="editGroupActual" value="${g.actual_top_two.join(', ')}">
+      </div>
+      <div class="form-group">
+        <label>Prediction Status</label>
+        <select class="form-control" id="editGroupStatus">
+          <option value="pending" ${g.status === 'pending' ? 'selected' : ''}>Pending</option>
+          <option value="pass" ${g.status === 'pass' ? 'selected' : ''}>Pass</option>
+          <option value="fail" ${g.status === 'fail' ? 'selected' : ''}>Fail</option>
+        </select>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitGroup(${idx})">Save Changes</button>
+      </div>
+    `;
+    openModal(`Edit Group ${g.group} Predictions`, html);
+  }
+
+  window.submitGroup = function(idx) {
+    const actualText = document.getElementById('editGroupActual').value;
+    predictionsData.group_predictions[idx].actual_top_two = actualText ? actualText.split(',').map(s => s.trim()) : [];
+    predictionsData.group_predictions[idx].status = document.getElementById('editGroupStatus').value;
+    saveData();
+  }
+
+  // Edit Dark Horse
+  window.editDarkHorse = function(idx) {
+    const h = predictionsData.dark_horses[idx];
+    const html = `
+      <div class="form-group">
+        <label>Team</label>
+        <input type="text" class="form-control" value="${h.team}" disabled>
+      </div>
+      <div class="form-group">
+        <label>Predicted run</label>
+        <input type="text" class="form-control" id="editHorseRun" value="${h.predicted_run}">
+      </div>
+      <div class="form-group">
+        <label>Prediction Status</label>
+        <select class="form-control" id="editHorseStatus">
+          <option value="pending" ${h.status === 'pending' ? 'selected' : ''}>Pending</option>
+          <option value="pass" ${h.status === 'pass' ? 'selected' : ''}>Pass</option>
+          <option value="fail" ${h.status === 'fail' ? 'selected' : ''}>Fail</option>
+        </select>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitDarkHorse(${idx})">Save Changes</button>
+      </div>
+    `;
+    openModal(`Edit ${h.team} Forecast`, html);
+  }
+
+  window.submitDarkHorse = function(idx) {
+    predictionsData.dark_horses[idx].predicted_run = document.getElementById('editHorseRun').value;
+    predictionsData.dark_horses[idx].status = document.getElementById('editHorseStatus').value;
+    saveData();
+  }
+
+  // Edit Bracket Match
+  window.editBracket = function(roundKey, idx) {
+    const match = predictionsData.bracket_predictions[roundKey][idx];
+    const html = `
+      <div class="form-group">
+        <label>Fixture</label>
+        <input type="text" class="form-control" value="${match.match}" disabled>
+      </div>
+      <div class="form-group">
+        <label>Actual winner</label>
+        <input type="text" class="form-control" id="editBracketActual" value="${match.actual}">
+      </div>
+      <div class="form-group">
+        <label>Prediction Status</label>
+        <select class="form-control" id="editBracketStatus">
+          <option value="pending" ${match.status === 'pending' ? 'selected' : ''}>Pending</option>
+          <option value="pass" ${match.status === 'pass' ? 'selected' : ''}>Pass</option>
+          <option value="fail" ${match.status === 'fail' ? 'selected' : ''}>Fail</option>
+        </select>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitBracket('${roundKey}', ${idx})">Save Changes</button>
+      </div>
+    `;
+    openModal('Edit Bracket Match', html);
+  }
+
+  window.submitBracket = function(roundKey, idx) {
+    predictionsData.bracket_predictions[roundKey][idx].actual = document.getElementById('editBracketActual').value;
+    predictionsData.bracket_predictions[roundKey][idx].status = document.getElementById('editBracketStatus').value;
+    saveData();
+  }
+
+  // Edit Final
+  window.editFinal = function() {
+    const final = predictionsData.bracket_predictions.final;
+    const html = `
+      <div class="form-group">
+        <label>Fixture</label>
+        <input type="text" class="form-control" value="${final.match}" disabled>
+      </div>
+      <div class="form-group">
+        <label>Actual Champion</label>
+        <input type="text" class="form-control" id="editFinalActual" value="${final.actual}">
+      </div>
+      <div class="form-group">
+        <label>Prediction Status</label>
+        <select class="form-control" id="editFinalStatus">
+          <option value="pending" ${final.status === 'pending' ? 'selected' : ''}>Pending</option>
+          <option value="pass" ${final.status === 'pass' ? 'selected' : ''}>Pass</option>
+          <option value="fail" ${final.status === 'fail' ? 'selected' : ''}>Fail</option>
+        </select>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitFinal()">Save Changes</button>
+      </div>
+    `;
+    openModal('Edit Final Forecast', html);
+  }
+
+  window.submitFinal = function() {
+    predictionsData.bracket_predictions.final.actual = document.getElementById('editFinalActual').value;
+    predictionsData.bracket_predictions.final.status = document.getElementById('editFinalStatus').value;
+    saveData();
+  }
+
+  // Edit Match
+  window.editMatch = function(idx) {
+    const m = predictionsData.key_matches[idx];
+    const html = `
+      <div class="form-group">
+        <label>Match</label>
+        <input type="text" class="form-control" value="${m.match}" disabled>
+      </div>
+      <div class="form-group">
+        <label>Actual score (e.g. 2 - 1)</label>
+        <input type="text" class="form-control" id="editMatchScore" value="${m.score}">
+      </div>
+      <div class="form-group">
+        <label>Prediction Status</label>
+        <select class="form-control" id="editMatchStatus">
+          <option value="pending" ${m.status === 'pending' ? 'selected' : ''}>Pending</option>
+          <option value="pass" ${m.status === 'pass' ? 'selected' : ''}>Pass</option>
+          <option value="fail" ${m.status === 'fail' ? 'selected' : ''}>Fail</option>
+        </select>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitMatch(${idx})">Save Changes</button>
+      </div>
+    `;
+    openModal('Edit Fixture Result', html);
+  }
+
+  window.submitMatch = function(idx) {
+    predictionsData.key_matches[idx].score = document.getElementById('editMatchScore').value;
+    predictionsData.key_matches[idx].status = document.getElementById('editMatchStatus').value;
+    saveData();
+  }
+
+  // Toast System
+  function showToast(msg) {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = 'toast success';
+    toast.innerHTML = `
+      <span style="font-size:1.25rem;">⚡</span>
+      <div style="font-size:0.9rem; font-weight:500;">${msg}</div>
+    `;
+    container.appendChild(toast);
+    
+    setTimeout(() => {
+      toast.style.animation = 'slideIn 0.3s reverse forwards';
+      setTimeout(() => toast.remove(), 300);
+    }, 4000);
+  }
+
+  // Run on start
+  loadData();
+</script>
+</body>
+</html>
