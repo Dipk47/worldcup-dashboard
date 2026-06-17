@@ -1293,7 +1293,7 @@
   async function loadData() {
     try {
       // First try to load from localStorage to preserve edits
-      const cached = localStorage.getItem('worldcup_predictions');
+      const cached = localStorage.getItem('worldcup_predictions_v2');
       if (cached) {
         predictionsData = JSON.parse(cached);
         renderDashboard();
@@ -1314,7 +1314,7 @@
       if (res.ok) {
         predictionsData = await res.json();
         // Sync with localStorage
-        localStorage.setItem('worldcup_predictions', JSON.stringify(predictionsData));
+        localStorage.setItem('worldcup_predictions_v2', JSON.stringify(predictionsData));
         renderDashboard();
       }
     } catch(e) {
@@ -1771,7 +1771,7 @@
   // Save State and Notify
   async function saveData() {
     // 1. Save locally
-    localStorage.setItem('worldcup_predictions', JSON.stringify(predictionsData));
+    localStorage.setItem('worldcup_predictions_v2', JSON.stringify(predictionsData));
     
     // 2. Try to sync to backend filesystem
     try {
