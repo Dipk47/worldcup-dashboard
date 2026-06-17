@@ -1,13 +1,13 @@
 {
   "tournament_info": {
     "name": "FIFA World Cup 2026",
-    "dates": "June 11 – July 19, 2026",
+    "dates": "June 11 \u2013 July 19, 2026",
     "hosts": "United States, Mexico, Canada",
     "status": "In Progress"
   },
   "champion_prediction": {
     "team": "Argentina",
-    "flag": "🇦🇷",
+    "flag": "\ud83c\udde6\ud83c\uddf7",
     "details": "Three consecutive major trophies (Copa 2021, WC 2022, Copa 2024). Standard-bearer of footballing cohesion.",
     "status": "pending"
   },
@@ -63,11 +63,11 @@
         "United States",
         "Paraguay",
         "Australia",
-        "Türkiye"
+        "T\u00fcrkiye"
       ],
       "predicted_top_two": [
         "United States",
-        "Türkiye"
+        "T\u00fcrkiye"
       ],
       "actual_top_two": [],
       "status": "pending"
@@ -76,7 +76,7 @@
       "group": "E",
       "teams": [
         "Germany",
-        "Curaçao",
+        "Cura\u00e7ao",
         "Ivory Coast",
         "Ecuador"
       ],
@@ -196,15 +196,15 @@
   "dark_horses": [
     {
       "team": "Norway",
-      "flag": "🇳🇴",
+      "flag": "\ud83c\uddf3\ud83c\uddf4",
       "rating": "9/10",
       "predicted_run": "Quarter-finals or beyond",
-      "key_players": "Erling Haaland, Martin Ødegaard",
+      "key_players": "Erling Haaland, Martin \u00d8degaard",
       "status": "pending"
     },
     {
       "team": "Japan",
-      "flag": "🇯🇵",
+      "flag": "\ud83c\uddef\ud83c\uddf5",
       "rating": "8.5/10",
       "predicted_run": "Break Round of 16 curse",
       "key_players": "Takefusa Kubo, Wataru Endo",
@@ -212,15 +212,15 @@
     },
     {
       "team": "Morocco",
-      "flag": "🇲🇦",
+      "flag": "\ud83c\uddf2\ud83c\udde6",
       "rating": "8/10",
       "predicted_run": "Knockouts deep run",
-      "key_players": "Achraf Hakimi, Brahim Díaz",
+      "key_players": "Achraf Hakimi, Brahim D\u00edaz",
       "status": "pending"
     },
     {
       "team": "Egypt",
-      "flag": "🇪🇬",
+      "flag": "\ud83c\uddea\ud83c\uddec",
       "rating": "7.5/10",
       "predicted_run": "Advance to knockouts",
       "key_players": "Mohamed Salah, Omar Marmoush",
@@ -228,7 +228,7 @@
     },
     {
       "team": "USA",
-      "flag": "🇺🇸",
+      "flag": "\ud83c\uddfa\ud83c\uddf8",
       "rating": "8/10",
       "predicted_run": "Quarter-finals with home support",
       "key_players": "Christian Pulisic, Weston McKennie",
@@ -325,17 +325,17 @@
       "match": "United States vs Paraguay",
       "date": "June 11, 2026",
       "predicted_winner": "United States",
-      "score": "",
-      "status": "pending"
+      "score": "4-1",
+      "status": "pass"
     },
     {
       "id": "m3",
       "group": "E",
-      "match": "Germany vs Curaçao",
+      "match": "Germany vs Cura\u00e7ao",
       "date": "June 11, 2026",
       "predicted_winner": "Germany",
-      "score": "",
-      "status": "pending"
+      "score": "7-1",
+      "status": "pass"
     },
     {
       "id": "m4",
@@ -352,8 +352,8 @@
       "match": "South Korea vs Czechia",
       "date": "June 12, 2026",
       "predicted_winner": "South Korea",
-      "score": "",
-      "status": "pending"
+      "score": "2-1",
+      "status": "pass"
     },
     {
       "id": "m6",
@@ -361,17 +361,17 @@
       "match": "Canada vs Switzerland",
       "date": "June 12, 2026",
       "predicted_winner": "Draw",
-      "score": "",
-      "status": "pending"
+      "score": "1-1",
+      "status": "pass"
     },
     {
       "id": "m7",
       "group": "D",
-      "match": "Australia vs Türkiye",
+      "match": "Australia vs T\u00fcrkiye",
       "date": "June 12, 2026",
       "predicted_winner": "Draw",
-      "score": "",
-      "status": "pending"
+      "score": "2-0",
+      "status": "fail"
     },
     {
       "id": "m8",
@@ -379,8 +379,8 @@
       "match": "Ivory Coast vs Ecuador",
       "date": "June 12, 2026",
       "predicted_winner": "Draw",
-      "score": "",
-      "status": "pending"
+      "score": "1-0",
+      "status": "fail"
     },
     {
       "id": "m9",
@@ -388,8 +388,8 @@
       "match": "Netherlands vs Japan",
       "date": "June 12, 2026",
       "predicted_winner": "Japan",
-      "score": "",
-      "status": "pending"
+      "score": "2-2",
+      "status": "fail"
     },
     {
       "id": "m10",
@@ -397,8 +397,8 @@
       "match": "Belgium vs Egypt",
       "date": "June 12, 2026",
       "predicted_winner": "Draw",
-      "score": "",
-      "status": "pending"
+      "score": "1-1",
+      "status": "pass"
     },
     {
       "id": "m11",
@@ -406,8 +406,8 @@
       "match": "France vs Senegal",
       "date": "June 12, 2026",
       "predicted_winner": "France",
-      "score": "",
-      "status": "pending"
+      "score": "3-1",
+      "status": "pass"
     },
     {
       "id": "m12",
@@ -424,8 +424,8 @@
       "match": "Qatar vs Bosnia",
       "date": "June 13, 2026",
       "predicted_winner": "Bosnia",
-      "score": "",
-      "status": "pending"
+      "score": "1-1",
+      "status": "fail"
     },
     {
       "id": "m14",
@@ -433,8 +433,8 @@
       "match": "Brazil vs Morocco",
       "date": "June 13, 2026",
       "predicted_winner": "Morocco or Draw",
-      "score": "",
-      "status": "pending"
+      "score": "1-1",
+      "status": "pass"
     },
     {
       "id": "m15",
@@ -442,8 +442,8 @@
       "match": "Tunisia vs Sweden",
       "date": "June 13, 2026",
       "predicted_winner": "Draw",
-      "score": "",
-      "status": "pending"
+      "score": "1-5",
+      "status": "fail"
     },
     {
       "id": "m16",
@@ -451,8 +451,8 @@
       "match": "Iran vs New Zealand",
       "date": "June 13, 2026",
       "predicted_winner": "Draw",
-      "score": "",
-      "status": "pending"
+      "score": "2-2",
+      "status": "pass"
     },
     {
       "id": "m17",
@@ -460,8 +460,8 @@
       "match": "Spain vs Cabo Verde",
       "date": "June 13, 2026",
       "predicted_winner": "Spain",
-      "score": "",
-      "status": "pending"
+      "score": "0-0",
+      "status": "fail"
     },
     {
       "id": "m18",
@@ -469,8 +469,8 @@
       "match": "Norway vs Iraq",
       "date": "June 13, 2026",
       "predicted_winner": "Norway",
-      "score": "",
-      "status": "pending"
+      "score": "4-1",
+      "status": "pass"
     },
     {
       "id": "m19",
@@ -478,8 +478,8 @@
       "match": "Argentina vs Algeria",
       "date": "June 13, 2026",
       "predicted_winner": "Argentina",
-      "score": "",
-      "status": "pending"
+      "score": "1-0",
+      "status": "pass"
     },
     {
       "id": "m20",
@@ -496,8 +496,8 @@
       "match": "Haiti vs Scotland",
       "date": "June 14, 2026",
       "predicted_winner": "Scotland",
-      "score": "",
-      "status": "pending"
+      "score": "0-1",
+      "status": "pass"
     },
     {
       "id": "m22",
@@ -583,7 +583,7 @@
     {
       "id": "m31",
       "group": "D",
-      "match": "Paraguay vs Türkiye",
+      "match": "Paraguay vs T\u00fcrkiye",
       "date": "June 16, 2026",
       "predicted_winner": "Draw",
       "score": "",
@@ -592,7 +592,7 @@
     {
       "id": "m32",
       "group": "E",
-      "match": "Curaçao vs Ecuador",
+      "match": "Cura\u00e7ao vs Ecuador",
       "date": "June 16, 2026",
       "predicted_winner": "Ecuador",
       "score": "",
@@ -754,7 +754,7 @@
     {
       "id": "m50",
       "group": "D",
-      "match": "United States vs Türkiye",
+      "match": "United States vs T\u00fcrkiye",
       "date": "June 23, 2026",
       "predicted_winner": "United States",
       "score": "",
@@ -808,7 +808,7 @@
     {
       "id": "m56",
       "group": "E",
-      "match": "Curaçao vs Ivory Coast",
+      "match": "Cura\u00e7ao vs Ivory Coast",
       "date": "June 24, 2026",
       "predicted_winner": "Ivory Coast",
       "score": "",
