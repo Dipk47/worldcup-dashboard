@@ -1212,6 +1212,9 @@
           <option value="L">Group L</option>
         </select>
 
+        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-left: 0.5rem;">Date:</span>
+        <input type="date" id="matchDateFilter" class="form-control" style="width: auto; padding: 0.4rem 1.0rem; font-size: 0.9rem; color-scheme: dark;" onchange="filterMatches()">
+
         <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-left: 0.5rem;">Status:</span>
         <select id="matchStatusFilter" class="form-control" style="width: auto; padding: 0.4rem 1.5rem; font-size: 0.9rem;" onchange="filterMatches()">
           <option value="all">All Statuses</option>
@@ -1645,6 +1648,7 @@
 
     const groupFilter = document.getElementById('matchGroupFilter')?.value || 'all';
     const statusFilter = document.getElementById('matchStatusFilter')?.value || 'all';
+    const dateFilter = document.getElementById('matchDateFilter')?.value || '';
     const betSize = parseFloat(document.getElementById('matchBetInput')?.value) || 20;
 
     // Direct JS ratings lookup for scaling odds realistically
@@ -1671,6 +1675,11 @@
       // Apply filters
       if (groupFilter !== 'all' && m.group !== groupFilter) return;
       if (statusFilter !== 'all' && m.status !== statusFilter) return;
+      if (dateFilter) {
+        const mDateObj = new Date(m.date + " UTC");
+        const mDateStr = mDateObj.toISOString().split('T')[0];
+        if (mDateStr !== dateFilter) return;
+      }
 
       count++;
       const item = document.createElement('div');
