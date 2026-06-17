@@ -1664,6 +1664,9 @@
 
     let count = 0;
 
+    // Sort matches by date
+    predictionsData.key_matches.sort((a, b) => new Date(a.date) - new Date(b.date));
+
     predictionsData.key_matches.forEach((m, idx) => {
       // Apply filters
       if (groupFilter !== 'all' && m.group !== groupFilter) return;
